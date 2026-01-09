@@ -12,6 +12,14 @@ public class branch {
         this.manager_name = manager_name;
         this.vip = vip;
     }
+    public branch() {
+        this.location = "default location";
+        this.main_building = false;
+        this.floors = 1;
+        this.manager_name = "default name";
+        this.vip = false;
+    }
+
 
     public boolean isVip() {
         return vip;
@@ -26,7 +34,11 @@ public class branch {
     }
 
     public void setLocation(String location) {
-        this.location = location;
+        if (location != null && !location.trim().isEmpty()) {
+            this.location = location;
+        } else {
+            System.out.println("Warning: location cannot be empty!");
+        }
     }
 
     public boolean isMain_building() {
@@ -42,7 +54,13 @@ public class branch {
     }
 
     public void setFloors(int floors) {
-        this.floors = floors;
+       if (floors>0){
+           this.floors = floors;
+       }
+       else{
+           System.out.println("Warning: floors cannot be negative or 0! Setting to 1.");
+           this.floors =1;
+       }
     }
 
     public String getManager_name() {
@@ -50,7 +68,11 @@ public class branch {
     }
 
     public void setManager_name(String manager_name) {
-        this.manager_name = manager_name;
+        if (manager_name != null && !manager_name.trim().isEmpty()) {
+            this.manager_name = manager_name;
+        } else {
+            System.out.println("Warning: Name cannot be empty!");
+        }
     }
 
     public float pricelist(boolean discount){

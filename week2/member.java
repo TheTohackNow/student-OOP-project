@@ -6,12 +6,20 @@ public class member {
     private boolean in_group;
     private static int count = 0;
     public member(String name,int age,boolean is_female,String phone_number, boolean in_group){
-        this.age = age;
+        setAge(age);
         this.name = name;
         this.is_female = is_female;
         this.phone_number = phone_number;
         this.in_group = in_group;
         count++;
+    }
+
+    public member() {
+        this.name = "Unknown Name";
+        this.is_female = false;
+        this.phone_number = "+00000";
+        this.in_group = false;
+        this.age = 0;
     }
 
     public String getName() {
@@ -27,7 +35,12 @@ public class member {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        } else {
+            System.out.println("Warning: Name cannot be empty!");
+        }
+
     }
 
     public boolean isIs_female() {
@@ -43,7 +56,13 @@ public class member {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        if (age >= 0) {
+            this.age = age;
+        } else {
+            System.out.println("Warning: Age cannot be negative! Setting to 1.");
+            this.age = 1;
+        }
+
     }
 
     public String getPhone_number() {
