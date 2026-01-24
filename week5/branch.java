@@ -1,3 +1,5 @@
+package gymSys;
+
 public class branch {
     private String location;
     private boolean main_building;
@@ -37,8 +39,7 @@ public class branch {
         if (location != null && !location.trim().isEmpty()) {
             this.location = location;
         } else {
-            System.out.println("Warning: location cannot be empty!");
-        }
+            throw new IllegalArgumentException("location cannot be empty!");        }
     }
 
     public boolean isMain_building() {
@@ -58,8 +59,7 @@ public class branch {
            this.floors = floors;
        }
        else{
-           System.out.println("Warning: floors cannot be negative or 0! Setting to 1.");
-           this.floors =1;
+           throw new IllegalArgumentException("floors cannot be negative or zero!");
        }
     }
 
@@ -71,7 +71,7 @@ public class branch {
         if (manager_name != null && !manager_name.trim().isEmpty()) {
             this.manager_name = manager_name;
         } else {
-            System.out.println("Warning: Name cannot be empty!");
+            throw new IllegalArgumentException("name cannot be empty!");
         }
     }
 

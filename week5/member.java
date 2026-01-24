@@ -1,3 +1,5 @@
+package gymSys;
+
 public class member {
     protected String name;
     protected int age;
@@ -51,9 +53,8 @@ public class member {
         if (name != null && !name.trim().isEmpty()) {
             this.name = name;
         } else {
-            System.out.println("Warning: Name cannot be empty!");
+            throw new IllegalArgumentException("Name can not be empty!");
         }
-
     }
 
     public boolean isIs_female() {
@@ -72,8 +73,8 @@ public class member {
         if (age >= 0) {
             this.age = age;
         } else {
-            System.out.println("Warning: Age cannot be negative! Setting to 1.");
-            this.age = 1;
+            throw new IllegalArgumentException("Age can not be negative!");
+
         }
 
     }
@@ -85,10 +86,8 @@ public class member {
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
-    //additional method 1 to apply discount
 
 
-    //additional method 2 to count the number of members
     public static int getCount() {
         return count;
     }
@@ -100,100 +99,9 @@ public class member {
                 ", is_female=" + is_female +
                 ", age='" + age + '\'' +
                 ", phone_number=" + phone_number + '\'' +
-                ", in_group=" + in_group +
+                ", in_group=" + in_group +" monthly fee= " + monthlyFee() +
                 '}';
     }
 
 }
 
-class studentMember extends member {
-    // child
-    private String university;
-    private boolean hasStudentCard;
-
-
-    public studentMember(String name, int age, boolean isFemale, String phoneNumber, boolean inGroup,
-                         String university, boolean hasStudentCard) {
-        super(name, age, isFemale, phoneNumber, inGroup);
-        this.university = university;
-        this.hasStudentCard = hasStudentCard;
-    }
-
-
-    @Override
-    public void work() {
-        System.out.println(name + " is doing a student-friendly workout plan.");
-    }
-
-    @Override
-    public String getRole() {
-        return "Student Member";
-    }
-
-    @Override
-    public double monthlyFee() {
-        if (hasStudentCard) return 7000.0;
-        return 9000.0;
-    }
-
-    public void applyStudentDiscount() {
-        if (hasStudentCard) System.out.println("Discount applied for " + name + ".");
-        else System.out.println("No student card. Discount not applied for " + name + ".");
-    }
-    public void requestStudyWorkout() {
-        System.out.println(name + " requested a short workout for study breaks.");
-    }
-    public String getUniversity() { return university; }
-
-    public boolean hasStudentCard() { return hasStudentCard; }
-    @Override
-    public String toString() {
-        return super.toString() + " (university='" + university + "', studentCard=" + hasStudentCard + ")";
-    }
-}
-
-
-
-
-class premiumMember extends member {
-
-    private boolean personalTrainer;
-
-
-
-    public premiumMember(String name, int age, boolean isFemale, String phoneNumber, boolean inGroup,
-                         boolean personalTrainer) {
-        super(name, age, isFemale, phoneNumber, inGroup);
-        this.personalTrainer = personalTrainer;
-
-    }
-
-
-    @Override
-    public void work() {
-        if (personalTrainer) {
-            System.out.println(name + " is training with a personal trainer.");
-        } else {
-            System.out.println(name + " is doing a premium workout.");
-        }
-    }
-
-    @Override
-    public String getRole() {
-        return "Premium Member";
-    }
-
-    @Override
-    public double monthlyFee() {
-
-        if (personalTrainer) return 25000.0;
-        return 18000.0;
-    }
-
-    public boolean hasPersonalTrainer() { return personalTrainer; }
-
-    @Override
-    public String toString() {
-        return super.toString() + " (personalTrainer=" + personalTrainer + ", guestPasses=" + ")";
-    }
-}
