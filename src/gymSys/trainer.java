@@ -16,7 +16,7 @@ public class trainer extends staff{
         if (exp >= 0) {
             this.exp = exp;
         } else {
-            throw new IllegalArgumentException("Experience cannot be negative!");
+            throw new IllegalArgumentException("    Experience cannot be negative!");
         }
 
     }
@@ -36,6 +36,11 @@ public class trainer extends staff{
             exp= 0;
         }
         return level;
+    }
+
+    @Override
+    public void work() {
+        System.out.println("trainer " + name + " is training for " + exp + " years!");
     }
 }
 

@@ -1,5 +1,4 @@
 package menu;
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.Scanner;
 import gymSys.*;
@@ -83,7 +82,7 @@ public class GymSettings implements menu {
                     break;
                 case 0:
                     System.out.println("\nGoodbye! ");
-                    running = false; // Exit loop
+                    running = false;
                     break;
                 default:
                     System.out.println("\nInvalid choice!");
@@ -91,7 +90,7 @@ public class GymSettings implements menu {
 
             if (running) {
                 System.out.println("\nPress Enter to continue...");
-                scanner.nextLine(); // Wait for user
+                scanner.nextLine();
             }
         }
 
@@ -103,101 +102,116 @@ public class GymSettings implements menu {
     private static void addGeneralMember() {
         System.out.println("\n--- ADD MEMBER ---");
 
-        System.out.print("Enter name: ");
-        String name = scanner.nextLine();
+        try {
+            System.out.print("Enter name: ");
+            String name = scanner.nextLine();
 
-        System.out.print("Enter age: ");
-        int age = scanner.nextInt();
-        scanner.nextLine();
+            System.out.print("Enter age: ");
+            int age = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.print("Enter phone number: ");
-        String phone_number = scanner.nextLine();
+            System.out.print("Enter phone number: ");
+            String phone_number = scanner.nextLine();
 
-        System.out.print("Is female? (true/false): ");
-        boolean is_female = scanner.nextBoolean();
-        scanner.nextLine();
+            System.out.print("Is female? (true/false): ");
+            boolean is_female = scanner.nextBoolean();
+            scanner.nextLine();
 
-        System.out.print("Is in group? (true/false): ");
-        boolean is_in_group = scanner.nextBoolean();
-        scanner.nextLine();
+            System.out.print("Is in group? (true/false): ");
+            boolean is_in_group = scanner.nextBoolean();
+            scanner.nextLine();
 
-        member person_new = new member(name, age, is_female, phone_number, is_in_group);
-        members.add(person_new);
+            member person_new = new member(name, age, is_female, phone_number, is_in_group);
+            members.add(person_new);
 
-        System.out.println("\nMember added successfully!");
+            System.out.println("\nMember added successfully!");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+            scanner.nextLine();
+        }
     }
 
     private static void addStudentMember() {
         System.out.println("\n--- ADD STUDENT MEMBER ---");
+        try {
+            System.out.print("Enter name: ");
+            String name = scanner.nextLine();
 
-        System.out.print("Enter name: ");
-        String name = scanner.nextLine();
+            System.out.print("Enter age: ");
+            int age = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.print("Enter age: ");
-        int age = scanner.nextInt();
-        scanner.nextLine();
+            System.out.print("Enter phone number: ");
+            String phone_number = scanner.nextLine();
 
-        System.out.print("Enter phone number: ");
-        String phone_number = scanner.nextLine();
+            System.out.print("Is female? (true/false): ");
+            boolean is_female = scanner.nextBoolean();
+            scanner.nextLine();
 
-        System.out.print("Is female? (true/false): ");
-        boolean is_female = scanner.nextBoolean();
-        scanner.nextLine();
+            System.out.print("Is in group? (true/false): ");
+            boolean is_in_group = scanner.nextBoolean();
+            scanner.nextLine();
 
-        System.out.print("Is in group? (true/false): ");
-        boolean is_in_group = scanner.nextBoolean();
-        scanner.nextLine();
+            System.out.print("Enter university: ");
+            String university = scanner.nextLine();
+            System.out.print("Has card? (true/false): ");
+            boolean has_card = scanner.nextBoolean();
+            scanner.nextLine();
 
-        System.out.print("Enter university: ");
-        String university = scanner.nextLine();
-        System.out.print("Has card? (true/false): ");
-        boolean has_card = scanner.nextBoolean();
-        scanner.nextLine();
+            member m = new studentMember(name, age, is_female, phone_number, is_in_group, university, has_card);
 
-        member m = new studentMember(name, age, is_female, phone_number, is_in_group, university, has_card);
+            members.add(m);
 
-        members.add(m);
-
-        System.out.println("\nStudent gymSys.member added successfully!");
+            System.out.println("\nStudent member added successfully!");
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+            scanner.nextLine();
+        }
     }
 
     private static void addPremiumMember() {
-        System.out.println("\n--- ADD PREMIUM MEMBER ---");
+        try {
+            System.out.println("\n--- ADD PREMIUM MEMBER ---");
 
-        System.out.print("Enter name: ");
-        String name = scanner.nextLine();
+            System.out.print("Enter name: ");
+            String name = scanner.nextLine();
 
-        System.out.print("Enter age: ");
-        int age = scanner.nextInt();
-        scanner.nextLine();
+            System.out.print("Enter age: ");
+            int age = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.print("Enter phone number: ");
-        String phone_number = scanner.nextLine();
+            System.out.print("Enter phone number: ");
+            String phone_number = scanner.nextLine();
 
-        System.out.print("Is female? (true/false): ");
-        boolean is_female = scanner.nextBoolean();
-        scanner.nextLine();
+            System.out.print("Is female? (true/false): ");
+            boolean is_female = scanner.nextBoolean();
+            scanner.nextLine();
 
-        System.out.print("Is in group? (true/false): ");
-        boolean is_in_group = scanner.nextBoolean();
-        scanner.nextLine();
+            System.out.print("Is in group? (true/false): ");
+            boolean is_in_group = scanner.nextBoolean();
+            scanner.nextLine();
 
 
-        System.out.print("has personal gymSys.trainer? (true/false): ");
-        boolean personal_trainer = scanner.nextBoolean();
-        scanner.nextLine();
+            System.out.print("has personal trainer? (true/false): ");
+            boolean personal_trainer = scanner.nextBoolean();
+            scanner.nextLine();
 
-        member m = new premiumMember(name, age, is_female, phone_number, is_in_group, personal_trainer);
-        members.add(m);
+            member m = new premiumMember(name, age, is_female, phone_number, is_in_group, personal_trainer);
+            members.add(m);
 
-        System.out.println("\nPremium gymSys.member added successfully!");
+            System.out.println("\nPremium member added successfully!");
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+            scanner.nextLine();
+        }
     }
     private static void polymorphismDemo() {
         System.out.println("\n--- instanceof + downcasting demo ---");
         for (member m : members) {
             System.out.println("\n" + m.getName() + " -> " + m.getRole());
-
-
         }
     }
     private static void viewAllMembers() {
@@ -285,29 +299,35 @@ public class GymSettings implements menu {
         }
     }
         private static void addTrainer () {
-            System.out.println("\n--- ADD TRAINER ---");
+            try {
+                System.out.println("\n--- ADD TRAINER ---");
 
-            System.out.print("Enter name: ");
-            String name = scanner.nextLine();
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
 
-            System.out.print("Enter age: ");
-            int age = scanner.nextInt();
-            scanner.nextLine();
+                System.out.print("Enter age: ");
+                int age = scanner.nextInt();
+                scanner.nextLine();
 
-            System.out.print("Enter phone number: ");
-            String phone_number = scanner.nextLine();
+                System.out.print("Enter phone number: ");
+                String phone_number = scanner.nextLine();
 
-            System.out.print("Enter salary: ");
-            int salary = scanner.nextInt();
+                System.out.print("Enter salary: ");
+                int salary = scanner.nextInt();
 
-            System.out.print("Enter experience: ");
-            int exp = scanner.nextInt();
-            scanner.nextLine();
+                System.out.print("Enter experience: ");
+                int exp = scanner.nextInt();
+                scanner.nextLine();
 
-            trainer person_new = new trainer(name, salary, phone_number, age,exp);
-            trainers.add(person_new);
+                trainer person_new = new trainer(name, salary, phone_number, age, exp);
+                trainers.add(person_new);
 
-            System.out.println("\nTrainer added successfully!");
+                System.out.println("\nTrainer added successfully!");
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                scanner.nextLine();
+            }
         }
 
         private static void viewAllTrainers () {
@@ -336,30 +356,36 @@ public class GymSettings implements menu {
         }
 
         private static void addBranch () {
-            System.out.println("\n--- ADD BRANCH ---");
+            try {
+                System.out.println("\n--- ADD BRANCH ---");
 
-            System.out.print("Enter location: ");
-            String location = scanner.nextLine();
+                System.out.print("Enter location: ");
+                String location = scanner.nextLine();
 
-            System.out.print("Is main building? (true/false): ");
-            boolean is_main = scanner.nextBoolean();
-            scanner.nextLine();
+                System.out.print("Is main building? (true/false): ");
+                boolean is_main = scanner.nextBoolean();
+                scanner.nextLine();
 
-            System.out.print("Enter floors: ");
-            int floor = scanner.nextInt();
-            scanner.nextLine();
+                System.out.print("Enter floors: ");
+                int floor = scanner.nextInt();
+                scanner.nextLine();
 
-            System.out.print("Enter manager name: ");
-            String manager_name = scanner.nextLine();
+                System.out.print("Enter manager name: ");
+                String manager_name = scanner.nextLine();
 
-            System.out.print("Is vip? (true/false): ");
-            boolean is_vip = scanner.nextBoolean();
-            scanner.nextLine();
+                System.out.print("Is vip? (true/false): ");
+                boolean is_vip = scanner.nextBoolean();
+                scanner.nextLine();
 
-            branch building_new = new branch(location, is_main, floor, manager_name, is_vip);
-            branches.add(building_new);
+                branch building_new = new branch(location, is_main, floor, manager_name, is_vip);
+                branches.add(building_new);
 
-            System.out.println("\nBuilding added successfully!");
+                System.out.println("\nBuilding added successfully!");
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                scanner.nextLine();
+            }
         }
 
         private static void viewAllBranches () {
