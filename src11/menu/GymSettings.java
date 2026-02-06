@@ -15,9 +15,9 @@ public class GymSettings implements menu {
 
     private static Scanner scanner = new Scanner(System.in);
 
-
+    
     private static memberDAO memberDAO = new memberDAO();
-    @Override
+@Override
     public void displayMenu() {
         System.out.println("\n========================================");
         System.out.println("         GYM MANAGEMENT SYSTEM");
@@ -323,203 +323,203 @@ public class GymSettings implements menu {
             System.out.println("No premium members found.");
         }
     }
-    private static void addTrainer () {
-        try {
-            System.out.println("\n--- ADD TRAINER ---");
+        private static void addTrainer () {
+            try {
+                System.out.println("\n--- ADD TRAINER ---");
 
-            System.out.print("Enter name: ");
-            String name = scanner.nextLine();
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
 
-            System.out.print("Enter age: ");
-            int age = scanner.nextInt();
-            scanner.nextLine();
+                System.out.print("Enter age: ");
+                int age = scanner.nextInt();
+                scanner.nextLine();
 
-            System.out.print("Enter phone number: ");
-            String phone_number = scanner.nextLine();
+                System.out.print("Enter phone number: ");
+                String phone_number = scanner.nextLine();
 
-            System.out.print("Enter salary: ");
-            int salary = scanner.nextInt();
+                System.out.print("Enter salary: ");
+                int salary = scanner.nextInt();
 
-            System.out.print("Enter experience: ");
-            int exp = scanner.nextInt();
-            scanner.nextLine();
+                System.out.print("Enter experience: ");
+                int exp = scanner.nextInt();
+                scanner.nextLine();
 
-            trainer person_new = new trainer(name, salary, phone_number, age, exp);
-            trainers.add(person_new);
+                trainer person_new = new trainer(name, salary, phone_number, age, exp);
+                trainers.add(person_new);
 
-            System.out.println("\nTrainer added successfully!");
-        }
-        catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
-            scanner.nextLine();
-        }
-    }
-
-    private static void viewAllTrainers () {
-        System.out.println("\n========================================");
-        System.out.println(" ALL TRAINERS");
-        System.out.println("========================================");
-
-        if (trainers.isEmpty()) {
-            System.out.println("No trainers found.");
-            return;
-        }
-
-        System.out.println("Total trainers: " + trainers.size());
-        System.out.println();
-
-        for (int i = 0; i < trainers.size(); i++) {
-            trainer trainer_i = trainers.get(i);
-            System.out.println((i + 1) + ". " + trainer_i.getName() + " - " + trainer_i.getAge() + " y.o.");
-            System.out.println("phone number: " + trainer_i.getPhone_number());
-            System.out.println("basic salary: " + trainer_i.getSalary());
-            System.out.println("full salary: " + trainer_i.salary_with_groups(member.getCount()));
-            System.out.println("gymSys.trainer experience: " + trainer_i.getExp());
-            System.out.println("gymSys.trainer level: " + trainer_i.quality());
-            System.out.println();
-        }
-    }
-
-    private static void addBranch () {
-        try {
-            System.out.println("\n--- ADD BRANCH ---");
-
-            System.out.print("Enter location: ");
-            String location = scanner.nextLine();
-
-            System.out.print("Is main building? (true/false): ");
-            boolean is_main = scanner.nextBoolean();
-            scanner.nextLine();
-
-            System.out.print("Enter floors: ");
-            int floor = scanner.nextInt();
-            scanner.nextLine();
-
-            System.out.print("Enter manager name: ");
-            String manager_name = scanner.nextLine();
-
-            System.out.print("Is vip? (true/false): ");
-            boolean is_vip = scanner.nextBoolean();
-            scanner.nextLine();
-
-            branch building_new = new branch(location, is_main, floor, manager_name, is_vip);
-            branches.add(building_new);
-
-            System.out.println("\nBuilding added successfully!");
-        }
-        catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
-            scanner.nextLine();
-        }
-    }
-
-    private static void viewAllBranches () {
-        System.out.println("\n========================================");
-        System.out.println(" ALL BUILDINGS");
-        System.out.println("========================================");
-
-        if (branches.isEmpty()) {
-            System.out.println("No buildings found.");
-            return;
-        }
-
-        System.out.println("Total buildings: " + branches.size());
-        System.out.println();
-
-        for (int i = 0; i < branches.size(); i++) {
-            branch branch_i = branches.get(i);
-            System.out.println((i + 1) + ". " + branch_i.getLocation());
-            System.out.println("floors: " + branch_i.getFloors());
-            System.out.println("manager's name: " + branch_i.getManager_name());
-            System.out.println("is main building: " + (branch_i.isMain_building() ? "Yes" : "No"));
-            System.out.println("is vip: " + (branch_i.isVip() ? "Yes" : "No"));
-
-            if (branch_i.space(member.getCount())) {
-                System.out.println("this building is overcrowded");
+                System.out.println("\nTrainer added successfully!");
             }
+            catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                scanner.nextLine();
+            }
+        }
+
+        private static void viewAllTrainers () {
+            System.out.println("\n========================================");
+            System.out.println(" ALL TRAINERS");
+            System.out.println("========================================");
+
+            if (trainers.isEmpty()) {
+                System.out.println("No trainers found.");
+                return;
+            }
+
+            System.out.println("Total trainers: " + trainers.size());
             System.out.println();
-        }
-    }
 
-    private static void viewAllMembersFromDB() {
-        memberDAO.getAllStaff();
-    }
-
-    private static void updateMemberDB() {
-        System.out.print("Enter member ID to update: ");
-        int member_id = scanner.nextInt();
-        scanner.nextLine();
-
-        boolean exists = memberDAO.getMemberById(member_id);
-        if (!exists) {
-            System.out.println("No member found with ID: " + member_id);
-            return;
+            for (int i = 0; i < trainers.size(); i++) {
+                trainer trainer_i = trainers.get(i);
+                System.out.println((i + 1) + ". " + trainer_i.getName() + " - " + trainer_i.getAge() + " y.o.");
+                System.out.println("phone number: " + trainer_i.getPhone_number());
+                System.out.println("basic salary: " + trainer_i.getSalary());
+                System.out.println("full salary: " + trainer_i.salary_with_groups(member.getCount()));
+                System.out.println("gymSys.trainer experience: " + trainer_i.getExp());
+                System.out.println("gymSys.trainer level: " + trainer_i.quality());
+                System.out.println();
+            }
         }
 
-        try {
-            System.out.print("Enter new name: ");
+        private static void addBranch () {
+            try {
+                System.out.println("\n--- ADD BRANCH ---");
+
+                System.out.print("Enter location: ");
+                String location = scanner.nextLine();
+
+                System.out.print("Is main building? (true/false): ");
+                boolean is_main = scanner.nextBoolean();
+                scanner.nextLine();
+
+                System.out.print("Enter floors: ");
+                int floor = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("Enter manager name: ");
+                String manager_name = scanner.nextLine();
+
+                System.out.print("Is vip? (true/false): ");
+                boolean is_vip = scanner.nextBoolean();
+                scanner.nextLine();
+
+                branch building_new = new branch(location, is_main, floor, manager_name, is_vip);
+                branches.add(building_new);
+
+                System.out.println("\nBuilding added successfully!");
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                scanner.nextLine();
+            }
+        }
+
+        private static void viewAllBranches () {
+            System.out.println("\n========================================");
+            System.out.println(" ALL BUILDINGS");
+            System.out.println("========================================");
+
+            if (branches.isEmpty()) {
+                System.out.println("No buildings found.");
+                return;
+            }
+
+            System.out.println("Total buildings: " + branches.size());
+            System.out.println();
+
+            for (int i = 0; i < branches.size(); i++) {
+                branch branch_i = branches.get(i);
+                System.out.println((i + 1) + ". " + branch_i.getLocation());
+                System.out.println("floors: " + branch_i.getFloors());
+                System.out.println("manager's name: " + branch_i.getManager_name());
+                System.out.println("is main building: " + (branch_i.isMain_building() ? "Yes" : "No"));
+                System.out.println("is vip: " + (branch_i.isVip() ? "Yes" : "No"));
+
+                if (branch_i.space(member.getCount())) {
+                    System.out.println("this building is overcrowded");
+                }
+                System.out.println();
+            }
+        }
+        
+        private static void viewAllMembersFromDB() {
+            memberDAO.getAllStaff();
+        }
+
+        private static void updateMemberDB() {
+            System.out.print("Enter member ID to update: ");
+            int member_id = scanner.nextInt();
+            scanner.nextLine();
+
+            boolean exists = memberDAO.getMemberById(member_id);
+            if (!exists) {
+                System.out.println("No member found with ID: " + member_id);
+                return;
+            }
+
+            try {
+                System.out.print("Enter new name: ");
+                String name = scanner.nextLine();
+
+                System.out.print("Enter new age: ");
+                int age = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("Enter new phone number: ");
+                String phone_number = scanner.nextLine();
+
+                System.out.print("Is female? (true/false): ");
+                boolean is_female = scanner.nextBoolean();
+                scanner.nextLine();
+
+                System.out.print("Is in group? (true/false): ");
+                boolean is_in_group = scanner.nextBoolean();
+                scanner.nextLine();
+
+                memberDAO.updateMember(member_id, name, age, is_female, phone_number, is_in_group);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                scanner.nextLine();
+            }
+        }
+
+        private static void deleteMemberDB() {
+            System.out.print("Enter member ID to delete: ");
+            int member_id = scanner.nextInt();
+            scanner.nextLine();
+
+            boolean exists = memberDAO.getMemberById(member_id);
+            if (!exists) {
+                System.out.println("No member found with ID: " + member_id);
+                return;
+            }
+
+            System.out.print("Are you sure you want to delete this member? (yes/no): ");
+            String confirm = scanner.nextLine();
+
+            if (confirm.equalsIgnoreCase("yes")) {
+                memberDAO.deleteMember(member_id);
+            } else {
+                System.out.println("Delete cancelled.");
+            }
+        }
+
+        private static void searchMemberByNameDB() {
+            System.out.print("Enter name to search: ");
             String name = scanner.nextLine();
-
-            System.out.print("Enter new age: ");
-            int age = scanner.nextInt();
-            scanner.nextLine();
-
-            System.out.print("Enter new phone number: ");
-            String phone_number = scanner.nextLine();
-
-            System.out.print("Is female? (true/false): ");
-            boolean is_female = scanner.nextBoolean();
-            scanner.nextLine();
-
-            System.out.print("Is in group? (true/false): ");
-            boolean is_in_group = scanner.nextBoolean();
-            scanner.nextLine();
-
-            memberDAO.updateMember(member_id, name, age, is_female, phone_number, is_in_group);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
-            scanner.nextLine();
-        }
-    }
-
-    private static void deleteMemberDB() {
-        System.out.print("Enter member ID to delete: ");
-        int member_id = scanner.nextInt();
-        scanner.nextLine();
-
-        boolean exists = memberDAO.getMemberById(member_id);
-        if (!exists) {
-            System.out.println("No member found with ID: " + member_id);
-            return;
+            memberDAO.searchByName(name);
         }
 
-        System.out.print("Are you sure you want to delete this member? (yes/no): ");
-        String confirm = scanner.nextLine();
+        private static void searchMemberByAgeRangeDB() {
+            System.out.print("Enter min age: ");
+            int minAge = scanner.nextInt();
+            scanner.nextLine();
 
-        if (confirm.equalsIgnoreCase("yes")) {
-            memberDAO.deleteMember(member_id);
-        } else {
-            System.out.println("Delete cancelled.");
+            System.out.print("Enter max age: ");
+            int maxAge = scanner.nextInt();
+            scanner.nextLine();
+
+            memberDAO.searchByAgeRange(minAge, maxAge);
         }
-    }
-
-    private static void searchMemberByNameDB() {
-        System.out.print("Enter name to search: ");
-        String name = scanner.nextLine();
-        memberDAO.searchByName(name);
-    }
-
-    private static void searchMemberByAgeRangeDB() {
-        System.out.print("Enter min age: ");
-        int minAge = scanner.nextInt();
-        scanner.nextLine();
-
-        System.out.print("Enter max age: ");
-        int maxAge = scanner.nextInt();
-        scanner.nextLine();
-
-        memberDAO.searchByAgeRange(minAge, maxAge);
-    }
 
 }
